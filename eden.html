@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Une invitation pour toi ❤️</title>
+<style>
+  body { font-family: system-ui; text-align: center; padding: 40px 20px; background: #fff0f5; }
+  h1 { color: #e91e63; }
+  button { font-size: 18px; padding: 12px 24px; margin: 10px; border: none; border-radius: 12px; cursor: pointer; }
+ .oui { background: #e91e63; color: white; }
+ .non { background: #ddd; }
+ .date-btn { display: block; width: 80%; margin: 10px auto; background: white; border: 2px solid #e91e63; color: #e91e63; }
+  #box { max-width: 400px; margin: auto; }
+</style>
+</head>
+<body>
+<div id="box">
+  <h1 id="titre">Veux-tu aller en date avec moi?</h1>
+  <div id="boutons">
+    <button class="oui" onclick="repondre('oui')">Oui</button>
+    <button class="non" onclick="repondre('non')">Non</button>
+  </div>
+</div>
+
+<script>
+let etape = 0;
+let doutes = ["Tu es sûre?", "Vraiment sûre?", "Bon dernière chance de dire non 😉", "Ok je retiens que c’est un oui forcé ❤️"];
+let dates = ["Café + balade au bord de mer", "Dîner aux chandelles", "Cinéma + glace", "Pique-nique coucher de soleil"];
+
+function repondre(choix){
+  if(etape < 4){
+    document.getElementById("titre").innerText = doutes[etape];
+    etape++;
+  } else {
+    afficherDates();
+  }
+}
+
+function afficherDates(){
+  document.getElementById("titre").innerText = "Choisis notre date parfaite ✨";
+  let html = "";
+  dates.forEach(d => {
+    html += `<button class="date-btn" onclick="valider('${d}')">${d}</button>`;
+  });
+  document.getElementById("boutons").innerHTML = html;
+}
+
+function valider(dateChoisie){
+  document.getElementById("box").innerHTML = `
+    <h1>Parfait!</h1>
+    <p>Rendez-vous pris pour : <b>${dateChoisie}</b></p>
+    <p>Mon petit mot doux : Tu illumines mes journées. J’ai hâte de te voir ❤️</p>
+  `;
+}
+</script>
+</body>
+</html>
